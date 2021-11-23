@@ -22,24 +22,24 @@ for (let item of holes) {
             deadStatus.textContent = `${deadStatusValue}`;
 
             if (deadStatusValue >= 10) {
-                restartGame();
-                return alert('Победа!');
+                restartGame('Победа!');
             }
         } else {
             lostStatusValue++;
             lostStatus.textContent = `${lostStatusValue}`;
             
             if (lostStatusValue >= 5) {
-                restartGame();
-                return alert('Вы проиграли!');
+                restartGame('Вы проиграли!');
             }
         }
     }
 }
 
-const restartGame = () => {
+const restartGame = alertText => {
     deadStatus.textContent = '0';
     lostStatus.textContent = '0';
+    alert(alertText);
+    
 }
 
 
