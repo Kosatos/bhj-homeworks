@@ -2,7 +2,6 @@ const cookieClicker = document.getElementById('cookie');
 const clickerStatus = document.getElementById('clicker__counter');
 const clickerSpeed = document.getElementById('clicker__speed-value');
 const startTime = Date.now();
-let clickTIme;
 
 let clickerStatusValue = parseInt(clickerStatus.textContent, 10);
 
