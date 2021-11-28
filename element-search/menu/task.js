@@ -1,11 +1,12 @@
-const hangHandler = (menuSelector) => {
-    menu = document.querySelector(menuSelector);
-    links = menu.querySelectorAll('.menu__link');
-    subMenus = menu.querySelectorAll('.menu_sub');
+const menus = document.querySelectorAll('.menu');
+const subMenus = document.querySelectorAll('.menu_sub');
 
-    links.forEach(link => {
-        link.onclick = clickLink.bind(link);
-    });
+const hangHandler = () => {
+    menus.forEach(menu => {
+        menu.querySelectorAll('.menu__link').forEach(link => {
+            link.onclick = clickLink.bind(link);
+        })
+    })
 }
 
 function clickLink() { 
@@ -19,23 +20,15 @@ function clickLink() {
 }
 
 const changeMenuClass = (currentSubMenu) => {
-    // subMenus.forEach(element => {
-    //   if (currentSubMenu !== element && element.classList.contains('menu_active')) {
-    //     element.classList.remove('menu_active');
-    //   }
-    // });
-    closeMenu();
+    subMenus.forEach(element => {
+      if (currentSubMenu !== element && element.classList.contains('menu_active')) {
+        element.classList.remove('menu_active');
+      }
+    });
     currentSubMenu.classList.toggle('menu_active');
   };
 
-const closeMenu = () => {
-    subMenus.forEach(element => {
-        element.classList.remove('menu_active');
-    });
-}
-
-  hangHandler('.menu_main');
-  hangHandler('.menu_additional');
+  hangHandler();
 
 
 // class Menu {
@@ -45,29 +38,30 @@ const closeMenu = () => {
 //         this.subMenus = this.menu.querySelectorAll('.menu_sub');
 
 //         this.links.forEach(link => {
-//             link.onclick = clickLink.bind(this);
+//             link.addEventListener('click', this.clickLink);
 //         });
+//     } 
+    
+//     clickLink = (link) => {
+//         let parent = link.target.closest('.menu__item');
+//         let subMenu = parent.querySelector('.menu_sub');
+        
+//         if (subMenu) {
+//             link.preventDefault();
+//             this.changeMenuClass(subMenu);
+//         }
+//     }
+    
+//     changeMenuClass = (currentSubMenu) => {
+//         this.subMenus.forEach(element => {
+//           if (currentSubMenu !== element && element.classList.contains('menu_active')) {
+//             element.classList.remove('menu_active');
+//           }
+//         });
+//         currentSubMenu.classList.toggle('menu_active');
 //     }    
 // }
 
-// function clickLink() {
-//     let parent = this.closest('.menu__item');
-//     let subMenu = parent.querySelector('.menu_sub');
-    
-//     if (subMenu) {
-//         changeMenuClass(subMenu);
-//         return false;
-//     }
-// }
-
-// const changeMenuClass = (currentSubMenu) => {
-//     this.subMenus.forEach(element => {
-//       if (currentSubMenu !== element && element.classList.contains('menu_active')) {
-//         element.classList.remove('menu_active');
-//       }
-//     });
-//     currentSubMenu.classList.toggle('menu_active');
-// }
 
 // const firstMenu = new Menu('.menu_main');
 // const secondMenu = new Menu('.menu_additional');
