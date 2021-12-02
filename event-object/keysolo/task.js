@@ -4,10 +4,35 @@ class Game {
 		this.wordElement = container.querySelector(".word");
 		this.winsElement = container.querySelector(".status__wins");
 		this.lossElement = container.querySelector(".status__loss");
+		this.timeElement = container.querySelector(".status__time");
+
+		this.timer = null;
 
 		this.reset();
 
+		this.startTimer();
+
 		this.registerEvents();
+	}
+
+	startTimer = () => {
+		this.wordTime = this.wordElement.children.length;
+		this.timeElement.textContent = `${this.wordTime}`;
+
+		this.timer = setInterval(() => {
+			if (--this.wordTime <= 0) {
+				this.fail();
+				this.stopTimer(this.timer);
+				this.setNewWord();
+				this.startTimer();
+			} else {
+				this.timeElement.textContent = `${this.wordTime}`;
+			}
+		}, 1000);
+	};
+
+	stopTimer = (timer) => {
+		clearInterval(timer);
 	}
 
 	reset() {
@@ -26,7 +51,9 @@ class Game {
      */
 
 		document.addEventListener("keydown", (event) => {
-      this.currentSymbol.textContent === event.key ? this.success() : this.fail();
+			this.currentSymbol.textContent === event.key
+				? this.success()
+				: this.fail();
 		});
 	}
 
@@ -42,6 +69,8 @@ class Game {
 			this.reset();
 		}
 		this.setNewWord();
+		this.stopTimer(this.timer);
+		this.startTimer();
 	}
 
 	fail() {
@@ -50,6 +79,8 @@ class Game {
 			this.reset();
 		}
 		this.setNewWord();
+		this.stopTimer(this.timer);
+		this.startTimer();
 	}
 
 	setNewWord() {
