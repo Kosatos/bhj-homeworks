@@ -33,17 +33,15 @@
 const interests = [...document.querySelectorAll('.interest')];
 
 interests.forEach(element => {
-    let checkboxes = [...element.querySelectorAll('.interest__check')];
+    let checkboxes = [...element.querySelectorAll('interest__check')];
+    let bottomCheckboxes = checkboxes.filter(item => item.closest('.interests').contains('interests_active'));
 
     checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', (event) => {
-            checkboxes.forEach(element => {
-                if(element.closest('.interests_active').children.every(el => el.checked === true)) {
-                    checkboxes[0].checked = true;
-                } else if (checkboxes[0].checked = true) {
-                    element.closest('.interests_active').children.forEach(item => item.checked = true)
-                }
-            })
+        checkbox.addEventListener('change', () => {
+            console.log(checkbox.checked)
+            if (bottomCheckboxes.every(el => el.checked === true)) {
+                checkboxes[0] = true;
+            }
         })
     })
 })

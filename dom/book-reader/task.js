@@ -16,6 +16,35 @@ class Book {
 			...this.backgroundControlContainer.querySelectorAll(".color"),
 		];
 
+		this.init();
+
+		// this.fontControllers.forEach((item) => {
+		// 	item.addEventListener("click", (event) => {
+		// 		event.preventDefault();
+		// 		this.changeFont(event);
+		// 	});
+		// });
+
+		// this.colorControllers.forEach((item) => {
+		// 	item.addEventListener("click", (event) => {
+		// 		event.preventDefault();
+		// 		this.changeColor(event);
+		// 	});
+		// });
+
+		// this.backgroundControllers.forEach((item) => {
+		// 	item.addEventListener("click", (event) => {
+		// 		event.preventDefault();
+		// 		this.changeBackground(event);
+		// 	});
+		// });
+	}
+
+	init() {
+		this.subscribeListeners();
+	}
+
+	subscribeListeners() {
 		this.fontControllers.forEach((item) => {
 			item.addEventListener("click", (event) => {
 				event.preventDefault();
@@ -38,7 +67,7 @@ class Book {
 		});
 	}
 
-	changeFont = function (fontController) {
+	changeFont(fontController) {
 		this.removeClass(this.fontControllers, "font-size_active");
 		this.book.classList.remove("book_fs-small", "book_fs-big");
 
@@ -53,7 +82,7 @@ class Book {
 		}
 	};
 
-	changeColor = function (colorController) {
+	changeColor(colorController) {
 		this.removeClass(this.colorControllers, "color_active");
 		this.book.classList.remove("book_color-black", "book_color-gray", "book_color-whitesmoke");
 
@@ -73,7 +102,7 @@ class Book {
 		}
 	};
 
-	changeBackground = function (backgroundController) {
+	changeBackground(backgroundController) {
 		this.removeClass(this.backgroundControllers, "color_active");
 		this.book.classList.remove("book_bg-black", "book_bg-gray", "book_bg-white");
 
@@ -93,7 +122,7 @@ class Book {
 		}
 	};
 
-	removeClass = function (elementsCollection, removableСlass) {
+	removeClass(elementsCollection, removableСlass) {
 		elementsCollection.forEach((item) => {
 			item.classList.remove(removableСlass);
 		});
