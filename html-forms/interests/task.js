@@ -1,47 +1,25 @@
-// class Checkbox {
-//     constructor (checkboxFormClass, checkboxClass, checkboxGroupClass) {
-//         this.checkboxForm = document.querySelector(checkboxFormClass);
-//         this.checkBoxes = [...this.checkboxForm.querySelectorAll(checkboxClass)];
-//         this.checkboxGroup = [...this.checkboxForm.querySelectorAll(checkboxGroupClass)];
+const checkboxes = [...document.querySelectorAll('input[type="checkbox"]')];
 
-//         this.checkStatus(checkboxClass);
-//     }
-    
-//     checkStatus = (checkboxClass) => {
-//         this.checkboxGroup.forEach(element => {
-//             const mainInterest = element.querySelector(checkboxClass);
-//             const activeInterests = [...element.querySelectorAll(checkboxClass)];
+checkboxes.forEach((checkbox) => {
+	checkbox.addEventListener("change", (event) => {
+		check(event.target);
+	});
+});
 
-//             console.log(mainInterest)
-//             console.log(activeInterests)
-            
-//             this.checkBoxes.forEach(checkbox=> {
-//                 checkbox.addEventListener('change', () => {
-//                     console.log(checkbox.checked)
-//                     if (activeInterests.every(item => item.checked = true)) {
-//                         mainInterest.checked = true
-//                     } else if (mainInterest.checked = true) {
-//                         activeInterests.forEach(item => item.checked = true)
-//                     }
-//                 })
-//             })
-//         })
-//     }
-// }
+function check(target) {
+	const checkboxParent = target.closest("li");
 
-// const interestsCheckbox = new Checkbox('.interests_main', '.interest__check', '.interest')
-const interests = [...document.querySelectorAll('.interest')];
+	const ulDescendent = checkboxParent && checkboxParent.querySelector("ul");
 
-interests.forEach(element => {
-    let checkboxes = [...element.querySelectorAll('interest__check')];
-    let bottomCheckboxes = checkboxes.filter(item => item.closest('.interests').contains('interests_active'));
+	const childrenCheckboxes = ulDescendent && [
+		...ulDescendent.querySelectorAll('input[type="checkbox"]'),
+	];
 
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            console.log(checkbox.checked)
-            if (bottomCheckboxes.every(el => el.checked === true)) {
-                checkboxes[0] = true;
-            }
-        })
-    })
-})
+	childrenCheckboxes.forEach((checkbox) => {
+		if (target.checked) {
+			checkbox.checked = true;
+		} else {
+			checkbox.checked = false;
+		}
+	});
+}
