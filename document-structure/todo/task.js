@@ -1,7 +1,6 @@
-const tasksParent = document.querySelector("#tasks");
-const tasksForm = document.querySelector("#tasks__form");
-const tasksInput = document.querySelector("#task__input");
-const tasksList = document.querySelector("#tasks__list");
+const tasksParent = document.getElementById("tasks");
+const tasksInput = document.getElementById("task__input");
+const tasksList = document.getElementById("tasks__list");
 
 tasksParent.addEventListener("click", (event) => {
 	event.preventDefault();
