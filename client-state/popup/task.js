@@ -1,7 +1,7 @@
 const modal = document.getElementById("subscribe-modal");
 const closeButton = document.querySelector(".modal__close_times");
 
-if(document.cookie.replace(/(?:(?:^|.*;\s*)close\s*\=\s*([^;]*).*$)|^.*$/, '$1') !== 'true') {
+if(!document.cookie.includes("true")) {
     modal.classList.add('modal_active');
 }
 
